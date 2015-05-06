@@ -25,6 +25,7 @@ class Classifier(BaseEstimator):
  
     def fit(self, X, y):
         layers0 = [('input', InputLayer),
+                   ('dropoutf', DropoutLayer),
                    ('dense0', DenseLayer),
                    ('dropout', DropoutLayer),
                    ('dense1', DenseLayer),
@@ -38,10 +39,12 @@ class Classifier(BaseEstimator):
         num_features = X.shape[1]
         self.net = NeuralNet(layers=layers0,
                              input_shape=(None, num_features),
-                             dense0_num_units=300,
+                             
+                             dropoutf_p=0.15,
+                             dense0_num_units=1000,
                              dense0_nonlinearity=rectify,
                              dropout_p=0.5,
-                             dense1_num_units=200,
+                             dense1_num_units=500,
                              dense1_nonlinearity=rectify,
                              output_num_units=num_classes,
                              output_nonlinearity=softmax,
@@ -51,7 +54,7 @@ class Classifier(BaseEstimator):
  
                              eval_size=0.2,
                              verbose=1,
-                             max_epochs=100,
+                             max_epochs=180,
                              )
         self.net.fit(X, y)
         return self
