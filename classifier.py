@@ -65,7 +65,7 @@ class Classifier(BaseEstimator):
  
                              eval_size=0.2,
                              verbose=1,
-                             max_epochs=150,
+                             max_epochs=150
                              )
         self.net.fit(X, y)
         return self
