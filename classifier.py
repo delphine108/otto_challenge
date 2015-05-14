@@ -25,9 +25,9 @@ class Classifier(BaseEstimator):
         param['subsample'] = 0.85
         param['gamma'] = 0.95
         param['min_child_weight'] = 3.0
-        param['eta'] = 0.05
+        param['eta'] = 0.007
         param['max_depth'] = 12
-        num_round = 820
+        num_round = 6900
         
         self.clf = xgb.train(param, dtrain, num_round)  
  
